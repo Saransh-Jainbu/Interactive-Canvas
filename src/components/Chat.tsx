@@ -11,7 +11,7 @@ interface ChatProps {
   userColor?: string;
 }
 
-interface Message {
+export interface Message {
   id: string;
   user: string;
   userId: string;
@@ -19,6 +19,15 @@ interface Message {
   time: string;
   color: string;
   timestamp: number;
+}
+
+interface ChatProps {
+  onClose: () => void;
+  messages: Message[];
+  onSendMessage: (text: string) => void;
+  currentUserId: string;
+  userName?: string;
+  userColor?: string;
 }
 
 // Popular emojis for quick access
@@ -39,16 +48,17 @@ const EMOJI_LIST = [
   '✨', '💫', '⭐', '🌟', '💯', '🎉', '🎊', '🎈', '🎁', '🏆',
 ];
 
-export function Chat({ onClose, userName: propUserName, userId: propUserId, userColor: propUserColor }: ChatProps) {
+export function Chat({
+  onClose,
+  messages,
+  onSendMessage,
+  currentUserId,
+  userName: propUserName,
+  userColor: propUserColor
+}: ChatProps) {
   const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [userName, setUserName] = useState(propUserName || 'Anonymous');
-  const [userColor, setUserColor] = useState(propUserColor || '#ff6b6b');
-  const [roomId, setRoomId] = useState('');
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const channelRef = useRef<RealtimeChannel | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const myUserId = useRef(propUserId || Math.random().toString(36).substring(7));
 
   // Auto-scroll to bottom when new messages arrive
   const scrollToBottom = () => {
@@ -58,13 +68,6 @@ export function Chat({ onClose, userName: propUserName, userId: propUserId, user
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
-
-  // Update user info when props change
-  useEffect(() => {
-    if (propUserName) setUserName(propUserName);
-    if (propUserColor) setUserColor(propUserColor);
-    if (propUserId) myUserId.current = propUserId;
-  }, [propUserName, propUserColor, propUserId]);
 
   // Close emoji picker when clicking outside
   useEffect(() => {
@@ -79,84 +82,11 @@ export function Chat({ onClose, userName: propUserName, userId: propUserId, user
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [showEmojiPicker]);
 
-  // Initialize room
-  useEffect(() => {
-    // Get room ID from URL
-    const params = new URLSearchParams(window.location.search);
-    const room = params.get('room') || 'default-room';
-    setRoomId(room);
-  }, []);
-
-  // Setup Supabase Realtime for chat
-  useEffect(() => {
-    if (!roomId) return;
-
-    const channel = supabase.channel(`chat:${roomId}`, {
-      config: {
-        broadcast: {
-          self: false, // Don't receive our own messages via broadcast
-        },
-      },
-    });
-
-    channel
-      .on('broadcast', { event: 'message' }, ({ payload }) => {
-        const newMessage: Message = {
-          id: payload.id,
-          user: payload.user,
-          userId: payload.userId,
-          text: payload.text,
-          time: payload.time,
-          color: payload.color,
-          timestamp: payload.timestamp,
-        };
-
-        setMessages((prev) => {
-          // Avoid duplicates
-          if (prev.some(msg => msg.id === newMessage.id)) {
-            return prev;
-          }
-          return [...prev, newMessage].sort((a, b) => a.timestamp - b.timestamp);
-        });
-      })
-      .subscribe(async (status) => {
-        if (status === 'SUBSCRIBED') {
-          console.log('Connected to chat room:', roomId);
-        }
-      });
-
-    channelRef.current = channel;
-
-    return () => {
-      channel.unsubscribe();
-    };
-  }, [roomId]);
-
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
     if (!message.trim()) return;
 
-    const timestamp = Date.now();
-    const newMessage: Message = {
-      id: `${myUserId.current}-${timestamp}`,
-      user: userName,
-      userId: myUserId.current,
-      text: message.trim(),
-      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      color: userColor,
-      timestamp,
-    };
-
-    // Add message locally first (optimistic update)
-    setMessages((prev) => [...prev, newMessage]);
-
-    // Broadcast to other users
-    channelRef.current?.send({
-      type: 'broadcast',
-      event: 'message',
-      payload: newMessage,
-    });
-
+    onSendMessage(message.trim());
     setMessage('');
   };
 
@@ -184,7 +114,7 @@ export function Chat({ onClose, userName: propUserName, userId: propUserId, user
         ) : (
           <>
             {messages.map((msg) => {
-              const isMyMessage = msg.userId === myUserId.current;
+              const isMyMessage = msg.userId === currentUserId;
               return (
                 <div key={msg.id} className={`flex flex-col ${isMyMessage ? 'items-end' : 'items-start'}`}>
                   <div className="flex items-center gap-2 mb-1">

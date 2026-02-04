@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Header } from './components/Header';
 import { InfiniteCanvas } from './components/canvas/InfiniteCanvas';
 import { Sidebar } from './components/Sidebar';
-import { Chat } from './components/Chat';
+import { Chat, Message } from './components/Chat';
 import { Toolbar } from './components/Toolbar';
 import { PropertiesPanel } from './components/PropertiesPanel';
 import { Cursors } from './components/canvas/Cursors';
@@ -13,7 +13,9 @@ import { motion, AnimatePresence } from 'motion/react';
 import { toast } from "sonner";
 import { supabase } from './supabase/client';
 import { RealtimeChannel } from '@supabase/supabase-js';
+
 import { useRef } from 'react';
+import { useChat } from './hooks/useChat';
 
 import { LandingPage } from './components/LandingPage';
 import { AuthPage } from './components/AuthPage';
@@ -54,6 +56,14 @@ export default function App() {
   const [collaborators, setCollaborators] = useState<any[]>([]);
   const channelRef = useRef<RealtimeChannel | null>(null);
   const myClientId = useRef(Math.random().toString(36).substring(7));
+
+  const { messages, unreadCount, sendMessage } = useChat({
+    roomId,
+    user,
+    myClientId: myClientId.current,
+    isChatOpen,
+    userColor: brushSettings.color
+  });
 
   useEffect(() => {
     // Check for roomId in URL
@@ -166,6 +176,8 @@ export default function App() {
       channel.unsubscribe();
     };
   }, [roomId]);
+
+
 
   // Keep ref internally synced
   useEffect(() => {
@@ -508,8 +520,10 @@ export default function App() {
             >
               <Chat
                 onClose={() => setIsChatOpen(false)}
-                userName={user?.name}
-                userId={user?.id || myClientId.current}
+                messages={messages}
+                onSendMessage={sendMessage}
+                currentUserId={myClientId.current}
+                userName={user?.name || 'Guest'}
                 userColor={brushSettings.color}
               />
             </motion.div>
@@ -528,6 +542,11 @@ export default function App() {
             >
               <div className="relative">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#ff6b6b] group-hover:scale-110 transition-transform"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>
+                {unreadCount > 0 && (
+                  <span className="absolute -top-3 -right-3 w-6 h-6 bg-[#ff6b6b] text-white text-xs font-bold rounded-full flex items-center justify-center border-2 border-white dark:border-[#24283b] shadow-lg animate-bounce">
+                    {unreadCount}
+                  </span>
+                )}
               </div>
             </motion.button>
           )}
