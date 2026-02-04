@@ -1,35 +1,53 @@
-# Interactive Canvas App
+# 🎨 Interactive Canvas
 
-A real-time collaborative canvas application built with modern web technologies. This project enables users to design, collaborate, and interact on a shared digital canvas.
+A high-performance, real-time collaborative whiteboard application built for seamless brainstorming, design, and teamwork. Experience an infinite canvas where ideas flow freely.
 
-## 🚀 Features
+![License](https://img.shields.io/badge/license-MIT-blue.svg) ![React](https://img.shields.io/badge/React-18-61dafb.svg) ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178c6.svg) ![Supabase](https://img.shields.io/badge/Supabase-Realtime-3ecf8e.svg)
 
-- **Interactive Canvas**: Real-time drawing and manipulation of elements.
-- **Collaboration**: Live updates and shared state (powered by Supabase).
-- **Modern UI**: Polished interface using Radix UI and Tailwind CSS.
-- **Responsive Design**: Works seamlessly across different devices.
+## ✨ Features
+
+### 🖌️ Core Experience
+- **Infinite Canvas:** Pan and zoom without limits.
+- **Real-time Collaboration:** See other users' cursors and drawing paths live (powered by Supabase).
+- **Multi-Tool Support:** Pencil, Eraser, Shapes (Rectangle, Circle, Diamond, Arrow), and Text.
+- **Advanced Styling:** Customize stroke color, width, opacity, and fill.
+- **Dark Mode:** Fully supported beautiful dark theme.
+
+### 💬 Communication
+- **Live Chat:** Integrated team chat linked to the room.
+- **Persistent History:** Messages are saved even if you close the panel.
+- **Unread Notifications:** Smart badges notify you of missed messages.
+- **Presence:** See who is online in the room.
+
+### 📱 Responsive Design
+- **Mobile Optimized:** Dedicated mobile toolbar and touch gestures.
+- **Adaptive UI:** Panels and interactions adjust for Phone, Tablet, and Desktop.
+
+## 🚀 Roadmap (Premium Features)
+
+We are actively working on these "Pro" features:
+
+- 🪄 **AI Sketch-to-Image:** Turn rough scribbles into polished assets.
+- 📐 **Smart Shapes:** Auto-correct hand-drawn shapes.
+- 📂 **Cloud Library:** Save and reuse team assets.
+- 🔒 **Private Rooms:** Password-protected sessions.
+- 🎥 **Timelapse Export:** Download a video of your creative process.
 
 ## 🛠️ Tech Stack
 
-- **Frontend Framework**: [React](https://react.dev/)
-- **Build Tool**: [Vite](https://vitejs.dev/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) & [Radix UI](https://www.radix-ui.com/)
-- **Backend/Database**: [Supabase](https://supabase.com/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Animations**: [Motion](https://motion.dev/)
-
-## 📦 Prerequisites
-
-Ensure you have the following installed:
-- [Node.js](https://nodejs.org/) (v16+)
-- [npm](https://www.npmjs.com/)
+- **Framework:** [React](https://react.dev/) + [Vite](https://vitejs.dev/)
+- **Language:** [TypeScript](https://typescriptlang.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **State/Backend:** [Supabase](https://supabase.com/) (Realtime & Auth)
+- **UI Components:** [Radix UI](https://www.radix-ui.com/) & [Lucide Icons](https://lucide.dev/)
+- **Animations:** [Motion](https://motion.dev/) (formerly Framer Motion)
 
 ## ⚡ Getting Started
 
 1.  **Clone the repository:**
     ```bash
-    git clone <repository-url>
-    cd <repository-directory>
+    git clone https://github.com/yourusername/interactive-canvas.git
+    cd interactive-canvas
     ```
 
 2.  **Install dependencies:**
@@ -37,20 +55,22 @@ Ensure you have the following installed:
     npm install
     ```
 
-3.  **Start the development server:**
+3.  **Configure Environment:**
+    Create a `.env` file in the root directory:
+    ```env
+    VITE_SUPABASE_URL=your_supabase_url
+    VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+    ```
+
+4.  **Start the app:**
     ```bash
     npm run dev
     ```
 
-4.  **Build for production:**
-    ```bash
-    npm run build
-    ```
+## 📜 License
 
-## 🔐 Configuration
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Create a `.env` file in the root directory to configure your environment variables (e.g., Supabase credentials). See `.env.example` for reference.
+---
 
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
+Built with ❤️ for creative teams.
