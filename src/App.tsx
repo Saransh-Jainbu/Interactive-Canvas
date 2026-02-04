@@ -503,9 +503,15 @@ export default function App() {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: '100%', opacity: 0 }}
               transition={{ type: 'spring', damping: 30, stiffness: 200 }}
-              className="fixed right-0 top-16 bottom-0 w-85 z-[70] shadow-[-20px_0_40px_rgba(0,0,0,0.05)] dark:shadow-[-20px_0_40px_rgba(0,0,0,0.3)]"
+              className="fixed right-0 top-16 bottom-0 z-[70] shadow-[-20px_0_40px_rgba(0,0,0,0.05)] dark:shadow-[-20px_0_40px_rgba(0,0,0,0.3)]"
+              style={{ width: '600px', maxWidth: '100%' }}
             >
-              <Chat onClose={() => setIsChatOpen(false)} />
+              <Chat
+                onClose={() => setIsChatOpen(false)}
+                userName={user?.name}
+                userId={user?.id || myClientId.current}
+                userColor={brushSettings.color}
+              />
             </motion.div>
           )}
         </AnimatePresence>
