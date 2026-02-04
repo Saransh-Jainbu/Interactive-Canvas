@@ -2,9 +2,6 @@
 
 A real-time collaborative canvas application built with modern web technologies. This project enables users to design, collaborate, and interact on a shared digital canvas.
 
-![Project Status](https://img.shields.io/badge/status-active-success.svg)
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-
 ## 🚀 Features
 
 - **Interactive Canvas**: Real-time drawing and manipulation of elements.

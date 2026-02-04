@@ -1,14 +1,11 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { 
-  ArrowRight, 
-  Sparkles, 
-  Users, 
-  MousePointer2, 
-  Palette, 
-  Infinity, 
-  Layers, 
-  Music,
+import {
+  ArrowRight,
+  Sparkles,
+  Users,
+  Palette,
+  Layers,
   Github
 } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
@@ -19,7 +16,7 @@ interface LandingPageProps {
 
 const features = [
   {
-    icon: Infinity,
+    icon: Sparkles,
     title: "Infinite Canvas",
     description: "Never run out of space. A boundless workspace for your biggest ideas and smallest details."
   },
@@ -45,7 +42,7 @@ export function LandingPage({ onStart }: LandingPageProps) {
     <div className="min-h-screen bg-[#fafafa] dark:bg-[#0f111a] text-gray-900 dark:text-[#c0caf5] overflow-x-hidden selection:bg-[#ff6b6b]/30">
       {/* Hero Background Grain */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05] z-[100] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
-      
+
       {/* Decorative Orbs */}
       <div className="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#ff6b6b]/10 blur-[120px] rounded-full pointer-events-none" />
       <div className="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#7aa2f7]/10 blur-[120px] rounded-full pointer-events-none" />
@@ -53,7 +50,7 @@ export function LandingPage({ onStart }: LandingPageProps) {
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-[110] px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center gap-2"
@@ -63,15 +60,13 @@ export function LandingPage({ onStart }: LandingPageProps) {
             </div>
             <span className="font-bold text-xl tracking-tighter">FIGMA MAKE</span>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center gap-6"
           >
-            <button className="text-sm font-bold opacity-50 hover:opacity-100 transition-opacity hidden md:block">Features</button>
-            <button className="text-sm font-bold opacity-50 hover:opacity-100 transition-opacity hidden md:block">Showcase</button>
-            <button 
+            <button
               onClick={onStart}
               className="px-6 py-2.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-2xl text-sm font-bold shadow-xl hover:scale-105 active:scale-95 transition-all"
             >
@@ -100,13 +95,13 @@ export function LandingPage({ onStart }: LandingPageProps) {
               <p className="text-lg text-gray-500 dark:text-gray-400 max-w-lg mb-10 leading-relaxed font-medium">
                 The most sophisticated collaborative canvas for modern teams. Built with a premium lofi aesthetic and professional-grade drawing tools.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row items-center gap-4">
-                <button 
+                <button
                   onClick={onStart}
                   className="w-full sm:w-auto px-8 py-5 bg-[#ff6b6b] text-white rounded-[24px] font-bold text-lg shadow-2xl shadow-[#ff6b6b]/30 flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] transition-all group"
                 >
-                  Start Drawing 
+                  Start Drawing
                   <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                 </button>
                 <button className="w-full sm:w-auto px-8 py-5 bg-white dark:bg-[#1a1b26] border border-gray-200 dark:border-[#414868] text-gray-900 dark:text-white rounded-[24px] font-bold text-lg shadow-sm hover:bg-gray-50 dark:hover:bg-[#24283b] transition-all flex items-center justify-center gap-3">
@@ -117,10 +112,10 @@ export function LandingPage({ onStart }: LandingPageProps) {
 
               <div className="mt-12 flex items-center gap-4">
                 <div className="flex -space-x-3">
-                  {[1,2,3,4].map(i => (
+                  {[1, 2, 3, 4].map(i => (
                     <div key={i} className="w-10 h-10 rounded-full border-4 border-white dark:border-[#0f111a] overflow-hidden bg-gray-200">
-                      <ImageWithFallback 
-                        src={`https://i.pravatar.cc/100?img=${i + 10}`} 
+                      <ImageWithFallback
+                        src={`https://i.pravatar.cc/100?img=${i + 10}`}
                         alt="Avatar"
                         className="w-full h-full object-cover"
                       />
@@ -141,14 +136,14 @@ export function LandingPage({ onStart }: LandingPageProps) {
             >
               <div className="absolute inset-0 bg-linear-to-br from-[#ff6b6b]/20 to-[#7aa2f7]/20 blur-3xl opacity-50" />
               <div className="relative h-full bg-white/50 dark:bg-[#1a1b26]/50 backdrop-blur-xl rounded-[48px] border border-white dark:border-white/10 shadow-2xl overflow-hidden group">
-                <ImageWithFallback 
+                <ImageWithFallback
                   src="https://images.unsplash.com/photo-1571647627378-e4ed42e700fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwZGVzaWduZXIlMjB3b3Jrc3BhY2UlMjBjb2xsYWJvcmF0aXZlJTIwZHJhd2luZ3xlbnwxfHx8fDE3NzAxNzk5NDZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
                   alt="Interface Preview"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
                 />
-                
+
                 {/* Floating UI Elements */}
-                <motion.div 
+                <motion.div
                   animate={{ y: [0, -10, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   className="absolute top-10 left-10 p-4 bg-white/90 dark:bg-[#1a1b26]/90 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 flex items-center gap-3"
@@ -162,13 +157,13 @@ export function LandingPage({ onStart }: LandingPageProps) {
                   </div>
                 </motion.div>
 
-                <motion.div 
+                <motion.div
                   animate={{ y: [0, 10, 0] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                   className="absolute bottom-10 right-10 p-4 bg-white/90 dark:bg-[#1a1b26]/90 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 flex items-center gap-3"
                 >
                   <div className="flex -space-x-2">
-                    {[1,2].map(i => (
+                    {[1, 2].map(i => (
                       <div key={i} className="w-8 h-8 rounded-full border-2 border-white dark:border-[#1a1b26] bg-gray-200 overflow-hidden">
                         <ImageWithFallback src={`https://i.pravatar.cc/100?img=${i + 20}`} alt="user" />
                       </div>
@@ -206,27 +201,27 @@ export function LandingPage({ onStart }: LandingPageProps) {
           </div>
 
           {/* CTA Section */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className="relative rounded-[48px] bg-gray-900 dark:bg-[#1a1b26] p-12 md:p-24 overflow-hidden text-center"
           >
-            <div className="absolute inset-0 bg-linear-to-br from-[#ff6b6b]/20 to-transparent opacity-50" />
+            <div className="absolute inset-0 bg-gradient-to-br from-[#ff6b6b]/20 to-transparent opacity-50" />
             <div className="relative z-10 max-w-2xl mx-auto">
               <h2 className="text-4xl md:text-6xl font-black text-white mb-8 tracking-tighter">Ready to build your masterpiece?</h2>
               <p className="text-gray-400 text-lg mb-12 font-medium">Join thousands of creators who have already started designing without limits.</p>
-              <button 
+              <button
                 onClick={onStart}
                 className="px-12 py-5 bg-white text-gray-900 rounded-[24px] font-bold text-xl hover:scale-105 active:scale-95 transition-all shadow-2xl"
               >
                 Launch Experience
               </button>
             </div>
-            
+
             {/* Background elements for CTA */}
             <div className="absolute top-0 right-0 p-8 opacity-20">
-              <Music size={120} className="text-[#ff6b6b]" />
+              <Sparkles size={120} className="text-[#ff6b6b]" />
             </div>
           </motion.div>
         </div>
