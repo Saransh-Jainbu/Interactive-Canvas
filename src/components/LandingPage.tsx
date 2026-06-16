@@ -55,10 +55,10 @@ export function LandingPage({ onStart }: LandingPageProps) {
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center gap-2"
           >
-            <div className="w-10 h-10 bg-[#ff6b6b] rounded-2xl flex items-center justify-center shadow-lg shadow-[#ff6b6b]/20">
+            <div className="w-10 h-10 bg-gradient-to-tr from-[#ff6b6b] to-[#f06595] rounded-lg flex items-center justify-center shadow-lg shadow-[#ff6b6b]/30">
               <Sparkles className="text-white" size={20} />
             </div>
-            <span className="font-bold text-xl tracking-tighter">FIGMA MAKE</span>
+            <span className="font-bold text-lg tracking-tight">Interactive Canvas</span>
           </motion.div>
 
           <motion.div
@@ -230,7 +230,7 @@ export function LandingPage({ onStart }: LandingPageProps) {
       {/* Footer */}
       <footer className="py-12 border-t border-gray-100 dark:border-[#1a1b26]">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8 opacity-40">
-          <div className="text-sm font-bold tracking-tight">© 2026 FIGMA MAKE STUDIO</div>
+          <div className="text-sm font-bold tracking-tight">© 2026 Interactive Canvas</div>
           <div className="flex items-center gap-8">
             <button className="text-xs font-black uppercase tracking-widest hover:opacity-100 transition-opacity">Privacy</button>
             <button className="text-xs font-black uppercase tracking-widest hover:opacity-100 transition-opacity">Terms</button>
