@@ -82,7 +82,7 @@ export function AuthPage({ onBack, onAuth }: AuthPageProps) {
     return (
         <div className="min-h-screen bg-[#fafafa] dark:bg-[#0f111a] text-gray-900 dark:text-[#c0caf5] flex items-center justify-center p-6 overflow-hidden selection:bg-[#ff6b6b]/30">
             {/* Background Effects - Matching Landing Page */}
-            <div className="fixed inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05] z-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+            <div className="fixed inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05] z-0" style={{backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")"}} />
             <div className="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#ff6b6b]/10 blur-[120px] rounded-full pointer-events-none" />
             <div className="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#7aa2f7]/10 blur-[120px] rounded-full pointer-events-none" />
 
